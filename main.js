@@ -216,3 +216,78 @@
     });
   }
 })();
+
+/* ============ animações extras ============ */
+(() => {
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (reduced) return;
+  const $$ = (s) => [...document.querySelectorAll(s)];
+
+  // letras soltas
+  const split = (el, cls) => {
+    const txt = el.textContent;
+    el.textContent = "";
+    [...txt].forEach((c, i) => {
+      const s = document.createElement("span");
+      s.className = cls;
+      s.textContent = c === " " ? " " : c;
+      s.style.setProperty("--i", i);
+      el.append(s);
+    });
+  };
+  $$(".hero-title .line").forEach((l) => split(l, "ch"));
+  $$(".cta-title span").forEach((l) => split(l, "wv"));
+
+  // títulos entram como carimbo
+  const stamps = $$(".about-head h2, .purpose-title, .crew-copy h2, .tag-title span, .cta-title");
+  stamps.forEach((s) => s.classList.add("stamp-in"));
+  const sio = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("in"); sio.unobserve(e.target); }
+  }), { threshold: 0.4 });
+  stamps.forEach((s) => sio.observe(s));
+
+  // cards e pilares entram em sequência
+  $$(".pillars .pillar, .cards .card").forEach((el) => {
+    const i = [...el.parentElement.children].indexOf(el);
+    el.style.setProperty("--d", i * 0.12 + "s");
+  });
+
+  // pilares inclinam seguindo o mouse
+  if (fine) {
+    $$(".pillar").forEach((p) => {
+      p.addEventListener("pointermove", (e) => {
+        const r = p.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        p.style.transform = `perspective(700px) rotateY(${x * 14}deg) rotateX(${y * -14}deg) translateY(-6px)`;
+      });
+      p.addEventListener("pointerleave", () => (p.style.transform = ""));
+    });
+
+    // botões magnéticos
+    $$(".btn").forEach((b) => {
+      b.addEventListener("pointermove", (e) => {
+        const r = b.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+        b.style.transform = `translate(${x * 0.25}px, ${y * 0.35}px) rotate(${x * 0.03}deg)`;
+      });
+      b.addEventListener("pointerleave", () => (b.style.transform = ""));
+    });
+  }
+
+  // parallax leve
+  const crewImg = document.querySelector(".crew-photo img");
+  const blobs = $$(".purpose-bg .blob");
+  const brushes = document.querySelector(".brushes img");
+  let ticking = false;
+  const onScroll = () => {
+    ticking = false;
+    const vh = innerHeight;
+    const off = (el) => { const r = el.getBoundingClientRect(); return (r.top + r.height / 2 - vh / 2) / vh; };
+    if (crewImg) crewImg.style.transform = `translateY(${off(crewImg) * -30}px) rotate(${off(crewImg) * -2}deg)`;
+    if (brushes) brushes.style.transform = `rotate(${off(brushes) * 12}deg)`;
+    blobs.forEach((b, i) => (b.style.translate = `0 ${off(b) * (i + 1) * -40}px`));
+  };
+  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+})();
