@@ -1,0 +1,91 @@
+// Projetos do coletivo. A página de projetos, a vitrine da home e o mapa leem esta lista.
+// pos: [latitude, longitude] do lugar. null = ainda sem ponto no mapa.
+// aprox: true quando o ponto marca só a cidade ou a região, não o muro exato.
+// fotos: forma "t" (em pé) ou "w" (deitada) ajuda a montar a colagem.
+window.PROJETOS = [
+  {
+    id: "revira-raizes",
+    titulo: "Revira Raízes",
+    tipo: "evento coletivo",
+    status: "em breve",
+    quando: "21 de novembro de 2026 · 13h",
+    curto: "21 nov · 13h",
+    lugar: "Rua Emiliano Gória, 09 · BNH",
+    cidade: "Conceição dos Ouros",
+    pos: [-22.40805, -45.78546],
+    aprox: false,
+    resumo: "Um encontro de arte, cultura e coletividade para fortalecer laços e cultivar novas possibilidades.",
+    texto: [
+      "O Revira Raízes é um encontro de arte, cultura e coletividade, feito para fortalecer laços e cultivar novas possibilidades.",
+      "A construção é aberta: quem quiser colaborar com o evento pode se inscrever pelo formulário. Chega junto e vem fazer parte dessa história.",
+    ],
+    links: [
+      { href: "https://forms.gle/wE1ShxxAiiRfwQ4y7", label: "quero colaborar", forte: true },
+      { href: "https://www.instagram.com/coloreouros/reel/DfF7D33B6mq/", label: "ver o convite" },
+    ],
+    fotos: [],
+  },
+  {
+    id: "muros-cachoeira",
+    titulo: "Muros de Cachoeira",
+    tipo: "pintura de rua",
+    status: "realizado",
+    quando: "outubro de 2026",
+    curto: "out 2026",
+    lugar: "Cachoeira de Minas",
+    cidade: "Cachoeira de Minas",
+    pos: [-22.3554, -45.7796],
+    aprox: true,
+    resumo: "Um muro de rua virou tela, com um Gandalf de cachimbo aceso e fogo saltando da parede.",
+    texto: [
+      "Em Cachoeira de Minas, um muro de rua virou tela. O Natanael (@martell_artes) pintou um Gandalf de cachimbo aceso, com o fogo saltando da parede, enquanto a vizinhança acompanhava cada pincelada.",
+      "Como ele mesmo diz: um muro de cada vez.",
+    ],
+    credito: "fotos @viktormonteirolopes",
+    links: [
+      { href: "https://www.instagram.com/martell_artes/p/Deeu2IJINDu/", label: "ver no Instagram" },
+    ],
+    fotos: [
+      { src: "assets/projetos/cachoeira/gandalf.jpg", f: "t", cap: "gandalf de cachimbo aceso", alt: "Mural de um mago de barba branca e chapéu pontudo fumando cachimbo, com fogo laranja ao lado" },
+      { src: "assets/projetos/cachoeira/natanael.jpg", f: "t", cap: "Natanael e o pincel", alt: "Natanael sorrindo com um pincel na mão em frente ao mural" },
+      { src: "assets/projetos/cachoeira/rosto.jpg", f: "t", cap: "o rosto saindo do muro", alt: "Mão pintando o rosto do mago em traços pretos sobre o muro" },
+      { src: "assets/projetos/cachoeira/rua-murais.jpg", f: "t", cap: "a rua inteira pintada", alt: "Cachorro na rua em frente a muros pintados, com artistas trabalhando ao fundo" },
+      { src: "assets/projetos/cachoeira/aurora.jpg", f: "t", cap: "Aurora no portão", alt: "Personagem pintada no portão ao lado do nome Aurora, com um coração azul acima" },
+      { src: "assets/projetos/cachoeira/pintando.jpg", f: "t", cap: "mais uma camada", alt: "Artista de costas pintando o mural do mago" },
+      { src: "assets/projetos/cachoeira/fogo.jpg", f: "t", cap: "fogo saltando da parede", alt: "Detalhe do fogo laranja pintado saindo do cachimbo do mago" },
+      { src: "assets/projetos/cachoeira/muro-antes.jpg", f: "t", cap: "todo mundo na calçada", alt: "Pessoas pintando os muros de uma rua de paralelepípedo" },
+      { src: "assets/projetos/cachoeira/bandeira.jpg", f: "t", cap: "o muro verde e amarelo", alt: "Muro comprido pintado com faixas verdes e amarelas e uma bandeira do Brasil" },
+    ],
+  },
+  {
+    id: "encontro-apaco",
+    titulo: "Encontro na APACO",
+    tipo: "encontro e mural",
+    status: "realizado",
+    quando: "setembro de 2026",
+    curto: "set 2026",
+    lugar: "APACO",
+    cidade: "Conceição dos Ouros",
+    pos: null,
+    aprox: false,
+    resumo: "Um dia inteiro de tinta, oficinas e brincadeira, com mural novo pintado ao vivo.",
+    texto: [
+      "Um dia inteiro de tinta, oficinas e brincadeira na APACO, construído a muitas mãos. Artistas, educadores, crianças, famílias e parceiros ocuparam o mesmo espaço, e os muros da associação ganharam mural novo, pintado ao vivo na frente de todo mundo.",
+      "A cultura nasce dessa troca entre quem cria e quem recebe.",
+    ],
+    credito: "com apoio da @prefeituradeconceicaodosouros",
+    links: [
+      { href: "https://www.instagram.com/coloreouros/p/Dc06dGzlqlB/", label: "ver no Instagram" },
+    ],
+    fotos: [
+      { src: "assets/projetos/apaco/mural-apaco.jpg", f: "w", cap: "o muro da APACO de cara nova", alt: "Mural colorido na parede da APACO, com baleia, personagem de chapéu amarelo e letras grafitadas, e pessoas olhando de frente" },
+      { src: "assets/projetos/apaco/baleia.jpg", f: "t", cap: "a baleia nascendo", alt: "Artista pintando a baleia do mural" },
+      { src: "assets/projetos/apaco/pintando.jpg", f: "t", cap: "traço por traço", alt: "Artista de camiseta vermelha contornando em laranja e amarelo um desenho na parede branca" },
+      { src: "assets/projetos/apaco/oficina.jpg", f: "w", cap: "oficina aberta", alt: "Pessoas sentadas em volta de uma mesa com tintas e pincéis durante a oficina" },
+      { src: "assets/projetos/apaco/mural-pronto.jpg", f: "w", cap: "mural pronto, gente em volta", alt: "Mural finalizado com baleia, personagem e sol, com artistas conversando em frente" },
+      { src: "assets/projetos/apaco/meio-ambiente.jpg", f: "t", cap: "cuidar do meio ambiente", alt: "Grupo de moradores em frente ao muro com o letreiro Cuidar do meio ambiente" },
+      { src: "assets/projetos/apaco/amigos.jpg", f: "t", cap: "quem veio, ficou", alt: "Duas pessoas sorrindo em frente a um mural, uma delas segurando uma garrafa" },
+      { src: "assets/projetos/apaco/rua.jpg", f: "w", cap: "a rua cheia", alt: "Rua cheia de crianças e famílias em frente aos murais da APACO" },
+    ],
+  },
+];

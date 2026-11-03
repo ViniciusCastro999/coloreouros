@@ -154,35 +154,73 @@
     </article>`;
   }
 
-  function render(arts) {
-    if (!arts.length) {
-      countEl.textContent = "As primeiras artes chegam ao mapa em breve.";
-      return;
-    }
-    countEl.innerHTML = `<b>${arts.length}</b> ${arts.length === 1 ? "arte no mapa" : "artes no mapa"}`;
-    const markers = arts.map((a, i) => {
-      const m = L.marker(a.pos, { icon: pin(i + 1), title: a.nome })
-        .addTo(map)
-        .bindPopup(popup(a), { maxWidth: 280, minWidth: 240, className: "pop-wrap" });
+  // projetos do coletivo (projetos-dados.js) que já têm lugar no mapa
+  const PROJS = (window.PROJETOS || []).filter((p) => p.pos);
+  const projPin = L.divIcon({ className: "pin pin-proj", html: `<svg><use href="#star"/></svg>`, iconSize: [44, 44], iconAnchor: [22, 22], popupAnchor: [0, -20] });
+
+  function projPopup(p) {
+    const [lat, lng] = p.pos;
+    const foto = p.fotos[0];
+    return `<article class="pop">
+      ${foto ? `<img src="${esc(foto.src)}" alt="${esc(foto.alt)}" loading="lazy">` : `<div class="pop-noimg pop-soon" aria-hidden="true"><b>${esc(p.curto)}</b></div>`}
+      <div class="pop-body">
+        <p class="pop-kind">projeto · ${esc(p.status)}</p>
+        <h4>${esc(p.titulo)}</h4>
+        <p class="pop-by">${esc(p.quando)}</p>
+        <p>${esc(p.resumo)}</p>
+        <p class="pop-end">${esc(p.lugar)}${p.aprox ? " (local aproximado)" : ""}</p>
+        <p class="pop-links">
+          <a href="projetos.html#${p.id}">ver projeto →</a>
+          ${p.aprox ? "" : `<a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" rel="noopener">como chegar ↗</a>`}
+        </p>
+      </div>
+    </article>`;
+  }
+
+  function render(arts, failed) {
+    const markers = [];
+    const pick = new URLSearchParams(location.search).get("p");
+    const add = (pos, icon, title, html, label, sub, tag) => {
+      const m = L.marker(pos, { icon, title }).addTo(map)
+        .bindPopup(html, { maxWidth: 280, minWidth: 240, className: "pop-wrap" });
       const li = document.createElement("li");
-      li.innerHTML = `<button type="button"><i>${i + 1}</i><span><b>${esc(a.nome)}</b>${a.artista ? `<small>${esc(a.artista)}</small>` : ""}</span></button>`;
+      li.innerHTML = `<button type="button">${tag}<span><b>${esc(label)}</b>${sub ? `<small>${esc(sub)}</small>` : ""}</span></button>`;
       li.querySelector("button").addEventListener("click", () => {
         if (innerWidth < 760) el.scrollIntoView({ behavior: "smooth", block: "center" });
-        map.flyTo(a.pos, Math.max(map.getZoom(), 17), { duration: 0.8 });
+        map.flyTo(pos, Math.max(map.getZoom(), 17), { duration: 0.8 });
         setTimeout(() => m.openPopup(), 850);
       });
       listEl.append(li);
-      m.on("popupopen", () => { $$li().forEach((x) => x.classList.remove("on")); li.classList.add("on"); });
+      m.on("popupopen", () => { [...listEl.children].forEach((x) => x.classList.remove("on")); li.classList.add("on"); });
+      markers.push(m);
       return m;
+    };
+
+    let opened = null;
+    PROJS.forEach((p) => {
+      const m = add(p.pos, projPin, p.titulo, projPopup(p), p.titulo, `projeto · ${p.curto}`, `<i class="li-proj"><svg><use href="#star"/></svg></i>`);
+      if (p.id === pick) opened = { m, p };
     });
-    const $$li = () => [...listEl.children];
+    arts.forEach((a, i) => add(a.pos, pin(i + 1), a.nome, popup(a), a.nome, a.artista, `<i>${i + 1}</i>`));
+
+    const parts = [];
+    if (PROJS.length) parts.push(`<b>${PROJS.length}</b> ${PROJS.length === 1 ? "projeto" : "projetos"}`);
+    if (arts.length) parts.push(`<b>${arts.length}</b> ${arts.length === 1 ? "arte" : "artes"}`);
+    countEl.innerHTML = failed && !markers.length ? "O mapa não carregou. Recarregue a página para tentar de novo."
+      : parts.length ? `${parts.join(" e ")} no mapa` : "As primeiras artes chegam ao mapa em breve.";
+    if (!markers.length) return;
+
     map.fitBounds(L.featureGroup(markers).getBounds().pad(0.25), { maxZoom: 16 });
+    if (opened) {
+      // veio de "ver no mapa" na página de projetos
+      setTimeout(() => { map.setView(opened.p.pos, opened.p.aprox ? 14 : 17); opened.m.openPopup(); }, 900);
+    }
   }
 
   fetch(url)
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.text(); })
     .then((t) => render(toArts(parseCSV(t))))
-    .catch(() => { countEl.textContent = "O mapa não carregou. Recarregue a página para tentar de novo."; });
+    .catch(() => render([], true));
 
   // o Leaflet precisa recalcular o tamanho quando a seção aparece animada
   new IntersectionObserver((es, o) => {

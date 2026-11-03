@@ -292,23 +292,30 @@
   onScroll();
 })();
 
-/* ---------- fotos dos projetos: ampliar ---------- */
+/* ---------- vitrine dos projetos ---------- */
 (() => {
-  const box = document.getElementById("lightbox");
-  if (!box || !box.showModal) return;
-  const img = box.querySelector("img"), cap = box.querySelector(".lb-cap");
-  document.querySelectorAll(".proj-grid .ph").forEach((ph) => {
-    const im = ph.querySelector("img");
-    ph.tabIndex = 0;
-    ph.setAttribute("role", "button");
-    ph.setAttribute("aria-label", `Ampliar foto: ${im.alt}`);
-    const open = () => {
-      img.src = im.src; img.alt = im.alt;
-      cap.textContent = ph.querySelector("figcaption")?.textContent || "";
-      box.showModal();
-    };
-    ph.addEventListener("click", open);
-    ph.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
-  });
-  box.addEventListener("click", (e) => { if (e.target === box || e.target.closest(".lb-close")) box.close(); });
+  const box = document.getElementById("projCards");
+  if (!box || !window.PROJETOS) return;
+  const esc = (s) => (s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  box.innerHTML = window.PROJETOS.map((p, i) => {
+    const pics = p.fotos.slice(0, 3);
+    const [dia, hora] = (p.curto || "").split(" · ");
+    const stack = pics.length
+      ? pics.map((f, k) => `<img src="${esc(f.src)}" alt="" loading="lazy" style="--k:${k}">`).reverse().join("")
+      : `<div class="pc-poster"><b>${esc(dia)}</b>${hora ? `<i>${esc(hora)}</i>` : ""}<span>${esc(p.lugar)}</span></div>`;
+    return `<a class="proj-card reveal" href="projetos.html#${p.id}" style="--d:${i * 0.12}s">
+      <div class="pc-stack" aria-hidden="true">${stack}</div>
+      <div class="pc-body">
+        <p class="pc-tags"><span class="pc-num">${String(i + 1).padStart(2, "0")}</span><span class="pc-status${p.status === "em breve" ? " soon" : ""}">${esc(p.status)}</span></p>
+        <h3>${esc(p.titulo)}</h3>
+        <p class="pc-meta">${esc(p.curto)} · ${esc(p.cidade)}</p>
+        <p class="pc-sum">${esc(p.resumo)}</p>
+        <span class="pc-go">ver projeto <b>→</b></span>
+      </div>
+    </a>`;
+  }).join("");
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  box.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 })();

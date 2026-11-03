@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,400;0,500;0,700;0,900;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
@@ -155,35 +155,11 @@
 <!-- ============ PROJETOS ============ -->
 <section class="projects" id="projetos">
   <div class="proj-head reveal">
-    <p class="proj-kicker">projeto · 2026</p>
-    <h2 class="display shadowed">ENCONTRO<br>NA APACO</h2>
-    <div class="proj-copy">
-      <p>Um dia inteiro de tinta, oficinas e brincadeira na APACO, construído a muitas mãos. Artistas, educadores, crianças, famílias e parceiros ocuparam o mesmo espaço, e os muros da associação ganharam mural novo, pintado ao vivo na frente de todo mundo.</p>
-      <p class="proj-meta">Conceição dos Ouros · com apoio da <a href="https://www.instagram.com/prefeituradeconceicaodosouros/" target="_blank" rel="noopener">@prefeituradeconceicaodosouros</a></p>
-    </div>
+    <h2 class="display shadowed">PROJETOS</h2>
+    <p>Muros, encontros e pinturas de rua pela região. Escolha um projeto e veja de perto como foi.</p>
   </div>
-
-  <div class="proj-grid">
-    <figure class="ph ph-a reveal" style="--r:-1.5deg"><img src="assets/projetos/mural-apaco.jpg" alt="Mural colorido na parede da APACO, com baleia, personagem de chapéu amarelo e letras grafitadas, e pessoas olhando de frente" loading="lazy"><figcaption>o muro da APACO de cara nova</figcaption></figure>
-    <figure class="ph ph-b reveal" style="--r:2deg"><img src="assets/projetos/baleia.jpg" alt="Artista pintando a baleia do mural" loading="lazy"><figcaption>a baleia nascendo</figcaption></figure>
-    <figure class="ph ph-c reveal" style="--r:-2deg"><img src="assets/projetos/pintando.jpg" alt="Artista de camiseta vermelha contornando em laranja e amarelo um desenho na parede branca" loading="lazy"><figcaption>traço por traço</figcaption></figure>
-    <figure class="ph ph-d reveal" style="--r:1deg"><img src="assets/projetos/oficina.jpg" alt="Pessoas sentadas em volta de uma mesa com tintas e pincéis durante a oficina" loading="lazy"><figcaption>oficina aberta</figcaption></figure>
-    <figure class="ph ph-e reveal" style="--r:-1deg"><img src="assets/projetos/mural-pronto.jpg" alt="Mural finalizado com baleia, personagem e sol, com artistas conversando em frente" loading="lazy"><figcaption>mural pronto, gente em volta</figcaption></figure>
-    <blockquote class="proj-quote reveal">
-      <p>“a cultura nasce dessa troca entre quem cria e quem recebe”</p>
-    </blockquote>
-    <figure class="ph ph-f reveal" style="--r:2deg"><img src="assets/projetos/meio-ambiente.jpg" alt="Grupo de moradores em frente ao muro com o letreiro Cuidar do meio ambiente" loading="lazy"><figcaption>cuidar do meio ambiente</figcaption></figure>
-    <figure class="ph ph-g reveal" style="--r:-2deg"><img src="assets/projetos/amigos.jpg" alt="Duas pessoas sorrindo em frente a um mural, uma delas segurando uma garrafa" loading="lazy"><figcaption>quem veio, ficou</figcaption></figure>
-    <figure class="ph ph-h reveal" style="--r:1.5deg"><img src="assets/projetos/rua.jpg" alt="Rua cheia de crianças e famílias em frente aos murais da APACO" loading="lazy"><figcaption>a rua cheia</figcaption></figure>
-  </div>
-
-  <p class="proj-more reveal"><a href="https://www.instagram.com/coloreouros/" target="_blank" rel="noopener">mais fotos no @coloreouros ↗</a></p>
-
-  <dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
-    <button type="button" class="lb-close" aria-label="Fechar">×</button>
-    <img alt="">
-    <p class="lb-cap"></p>
-  </dialog>
+  <div class="proj-cards" id="projCards"></div>
+  <p class="proj-more reveal"><a class="btn btn-solid" href="projetos.html">Ver todos os projetos</a></p>
 </section>
 
 <!-- ============ COLETIVO ============ -->
@@ -305,7 +281,8 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="main.js?v=6"></script>
-<script src="mapa.js?v=2"></script>
+<script src="projetos-dados.js?v=1"></script>
+<script src="main.js?v=7"></script>
+<script src="mapa.js?v=3"></script>
 </body>
 </html>
