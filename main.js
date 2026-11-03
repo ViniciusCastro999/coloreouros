@@ -240,7 +240,7 @@
   $$(".cta-title span").forEach((l) => split(l, "wv"));
 
   // títulos entram como carimbo
-  const stamps = $$(".about-head h2, .purpose-title, .crew-copy h2, .tag-title span, .cta-title, .map-head h2");
+  const stamps = $$(".about-head h2, .purpose-title, .crew-copy h2, .tag-title span, .cta-title, .map-head h2, .proj-head h2");
   stamps.forEach((s) => s.classList.add("stamp-in"));
   const sio = new IntersectionObserver((es) => es.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add("in"); sio.unobserve(e.target); }
@@ -290,4 +290,25 @@
   };
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
+})();
+
+/* ---------- fotos dos projetos: ampliar ---------- */
+(() => {
+  const box = document.getElementById("lightbox");
+  if (!box || !box.showModal) return;
+  const img = box.querySelector("img"), cap = box.querySelector(".lb-cap");
+  document.querySelectorAll(".proj-grid .ph").forEach((ph) => {
+    const im = ph.querySelector("img");
+    ph.tabIndex = 0;
+    ph.setAttribute("role", "button");
+    ph.setAttribute("aria-label", `Ampliar foto: ${im.alt}`);
+    const open = () => {
+      img.src = im.src; img.alt = im.alt;
+      cap.textContent = ph.querySelector("figcaption")?.textContent || "";
+      box.showModal();
+    };
+    ph.addEventListener("click", open);
+    ph.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  });
+  box.addEventListener("click", (e) => { if (e.target === box || e.target.closest(".lb-close")) box.close(); });
 })();
