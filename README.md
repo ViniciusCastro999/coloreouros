@@ -1,12 +1,12 @@
 <p align="center">
-  <a href="https://viniciuscastro999.github.io/coloreouros/">
+  <a href="https://coloreouros.com.br/">
     <img src="assets/readme/banner.svg" alt="Colore Ouros, coletivo de arte de Conceição dos Ouros (MG)" width="100%">
   </a>
 </p>
 
 <p align="center">
-  <a href="https://viniciuscastro999.github.io/coloreouros/"><img src="https://img.shields.io/badge/ver_o_site-F28A3A?style=for-the-badge&labelColor=00734A&logo=googlechrome&logoColor=EFE9D8" alt="Ver o site"></a>
-  <a href="https://viniciuscastro999.github.io/coloreouros/projetos.html"><img src="https://img.shields.io/badge/projetos-00E68A?style=for-the-badge&labelColor=00734A" alt="Projetos"></a>
+  <a href="https://coloreouros.com.br/"><img src="https://img.shields.io/badge/ver_o_site-F28A3A?style=for-the-badge&labelColor=00734A&logo=googlechrome&logoColor=EFE9D8" alt="Ver o site"></a>
+  <a href="https://coloreouros.com.br/projetos.html"><img src="https://img.shields.io/badge/projetos-00E68A?style=for-the-badge&labelColor=00734A" alt="Projetos"></a>
   <a href="https://www.instagram.com/coloreouros/"><img src="https://img.shields.io/badge/@coloreouros-00734A?style=for-the-badge&logo=instagram&logoColor=EFE9D8" alt="Instagram @coloreouros"></a>
 </p>
 
@@ -33,7 +33,7 @@ Este repositório é o site do coletivo. Tudo feito à mão, sem framework e sem
 | | |
 |:--|:--|
 | 🎨 **Parede que se pinta** | O topo do site é uma parede: passa o dedo ou o mouse e ela ganha cor. |
-| 🖼️ **Projetos** | Cada projeto vira um cartão na home e uma parte na [página de projetos](https://viniciuscastro999.github.io/coloreouros/projetos.html), com fotos em colagem. |
+| 🖼️ **Projetos** | Cada projeto vira um cartão na home e uma parte na [página de projetos](https://coloreouros.com.br/projetos.html), com fotos em colagem. |
 | 🗺️ **Arte pela cidade** | Um mapa com os murais e os projetos espalhados pela região. Quem cuida dos pontos é uma planilha do Google. |
 | 🧑‍🎨 **Quem faz acontecer** | Os idealizadores e colaboradores, cada um com sua história. |
 | 💥 **Jogue tinta** | No fim da página, clicar espirra tinta na tela. Vai lá testar. |
