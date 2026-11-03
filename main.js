@@ -240,7 +240,7 @@
   $$(".cta-title span").forEach((l) => split(l, "wv"));
 
   // títulos entram como carimbo
-  const stamps = $$(".about-head h2, .purpose-title, .crew-copy h2, .tag-title span, .cta-title");
+  const stamps = $$(".about-head h2, .purpose-title, .crew-copy h2, .tag-title span, .cta-title, .map-head h2");
   stamps.forEach((s) => s.classList.add("stamp-in"));
   const sio = new IntersectionObserver((es) => es.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add("in"); sio.unobserve(e.target); }

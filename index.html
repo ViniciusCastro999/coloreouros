@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,400;0,500;0,700;0,900;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -39,6 +40,7 @@
     <a href="#quem-somos">Quem somos</a>
     <a href="#proposito">Propósito</a>
     <a href="#coletivo">Coletivo</a>
+    <a href="#mapa">Mapa</a>
     <a href="#participe">Participe</a>
   </nav>
   <a class="btn btn-ig" href="https://www.instagram.com/coloreouros/" target="_blank" rel="noopener">@coloreouros</a>
@@ -61,6 +63,10 @@
       <div class="hero-cta">
         <a href="#quem-somos" class="btn btn-solid">Conheça o coletivo</a>
         <a href="#participe" class="btn btn-ghost">Pinte com a gente</a>
+        <a href="#mapa" class="btn btn-map">
+          <span class="map-ico" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M12 1C6 1 1.5 5.4 1.5 11.2 1.5 19 12 31 12 31s10.5-12 10.5-19.8C22.5 5.4 18 1 12 1z" fill="#F28A3A" stroke="#00734A" stroke-width="2.5"/><circle cx="12" cy="11" r="4" fill="#EFE9D8"/></svg><i></i></span>
+          <span class="bm-txt"><b>VER O MAPA</b><small>arte pela cidade</small></span>
+        </a>
       </div>
     </div>
 
@@ -218,6 +224,25 @@
   </div>
 </section>
 
+<!-- ============ MAPA ============ -->
+<section class="map-sec" id="mapa">
+  <div class="map-head reveal">
+    <h2 class="display shadowed">ARTE PELA CIDADE</h2>
+    <p>Murais, grafites e lambes espalhados por Conceição dos Ouros. Escolha um ponto no mapa, conheça a obra e vá ver de perto.</p>
+  </div>
+  <div class="map-wrap reveal">
+    <div id="map" class="map" role="region" aria-label="Mapa das artes na cidade"></div>
+    <aside class="map-side">
+      <p class="map-count" id="mapCount">Carregando o mapa…</p>
+      <ol class="map-list" id="mapList"></ol>
+    </aside>
+  </div>
+  <div class="map-cta reveal" id="mapCta" hidden>
+    <p class="scribble">sabe de uma arte que não está no mapa?</p>
+    <a id="mapForm" class="btn btn-solid" href="#" target="_blank" rel="noopener">Indique uma arte</a>
+  </div>
+</section>
+
 <!-- ============ PARTICIPE ============ -->
 <section class="cta" id="participe">
   <canvas id="splats" aria-hidden="true"></canvas>
@@ -244,6 +269,8 @@
   <a href="https://www.instagram.com/coloreouros/" target="_blank" rel="noopener">instagram.com/coloreouros</a>
 </footer>
 
-<script src="main.js?v=3"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="main.js?v=5"></script>
+<script src="mapa.js?v=2"></script>
 </body>
 </html>
