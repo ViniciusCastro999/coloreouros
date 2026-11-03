@@ -231,7 +231,13 @@
     [...txt].forEach((c, i) => {
       const s = document.createElement("span");
       s.className = cls;
-      s.textContent = c === " " ? " " : c;
+      if (cls === "ch") {
+        // a letra que pula vai num span interno; o .ch fica parado e segura o hover
+        const inner = document.createElement("span");
+        inner.className = "chi";
+        inner.textContent = c;
+        s.append(inner);
+      } else s.textContent = c === " " ? " " : c;
       s.style.setProperty("--i", i);
       el.append(s);
     });
