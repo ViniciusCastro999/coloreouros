@@ -114,7 +114,7 @@ Letras em **Anton** (títulos), **Rubik** (texto) e **Caveat** (a letra de mão 
 ## ✺ quem faz
 
 **Idealizadores:** Alex ([@lab_013](https://www.instagram.com/lab_013/)), Rubia (Artub), Natanael ([@martell_artes](https://www.instagram.com/martell_artes/)) e Elizeu ([@olhovivo.art](https://www.instagram.com/olhovivo.art/))
-**Colaboradores:** Viktor Monteiro Lopes ([@viktormonteirolopes](https://www.instagram.com/viktormonteirolopes/)) e Thiago
+**Colaborador:** Thiago
 
 Fotos dos projetos: [@coloreouros](https://www.instagram.com/coloreouros/) e [@viktormonteirolopes](https://www.instagram.com/viktormonteirolopes/).
 Mapa: [Leaflet](https://leafletjs.com/) e [OpenStreetMap](https://www.openstreetmap.org/copyright).
